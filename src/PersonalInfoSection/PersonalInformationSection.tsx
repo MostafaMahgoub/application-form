@@ -10,7 +10,7 @@ function PersonalInfoSection() {
   const handleDeleteQuestion = () => {
     // Temporary onClick event handler that does nothing
   };
-  const renderField = (title: string, internal: boolean) => {
+  const renderField = (title: string) => {
     return (
       <div className="flex items-center gap-8">
         <CustomTitle title={title} />
@@ -30,19 +30,19 @@ function PersonalInfoSection() {
             <Divider />
             <CustomTitle title={"Last Name"} />
             <Divider />
-            {renderField("Email", false)}
+            {renderField("Email")}
             <Divider />
-            {renderField("Phone", true)}
+            {renderField("Phone")}
             <Divider />
-            {renderField("Nationality", true)}
+            {renderField("Nationality")}
             <Divider />
-            {renderField("Current Residence", true)}
+            {renderField("Current Residence")}
             <Divider />
-            {renderField("ID Number", true)}
+            {renderField("ID Number")}
             <Divider />
-            {renderField("Date of Birth", true)}
+            {renderField("Date of Birth")}
             <Divider />
-            {renderField("Gender", true)}
+            {renderField("Gender")}
             <Divider className="invisible" />
             <AddQuestionButton
               onClick={handleDeleteQuestion}
