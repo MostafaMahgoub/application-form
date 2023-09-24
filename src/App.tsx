@@ -5,7 +5,7 @@ import ProfileSection from './ProfileSection/ProfileSection';
 
 function AppForm() {
   return (
-    <div className="flex justify-center flex-col space-y-12 pt-20">
+    <div className="flex justify-center flex-col space-y-12 pt-20 pb-20">
       <CoverImageSection />
       <PersonalInfoSection />
       <ProfileSection />
