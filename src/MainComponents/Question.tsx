@@ -58,6 +58,7 @@ function Questions(props: QuestionsProps) {
 
   return (
     <div>
+      <div className='flex flex-col gap-3'>
       <Dropdown overlay={questionMenu} trigger={['click']}>
         <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
           Select Question <DownOutlined />
@@ -74,6 +75,7 @@ function Questions(props: QuestionsProps) {
         </div>
       )}
       <DeleteQuestionButton title="Delete question" onClick={handleDeleteQuestion} />
+      </div>
       <Divider />
     </div>
   );

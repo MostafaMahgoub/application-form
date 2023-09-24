@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Divider } from "antd";
 import AddQuestionButton from "../MainComponents/AddQuestionButton";
 import FormComponent from "../MainComponents/Form-Component";
 import Questions from "../MainComponents/Question";
-import DeleteQuestionButton from "../MainComponents/DeleteQuestionButton";
 interface Question {
   id: string;
 }
