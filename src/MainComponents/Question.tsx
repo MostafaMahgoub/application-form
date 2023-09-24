@@ -41,6 +41,7 @@ function Questions(props: QuestionsProps) {
   const [durationUnit, setDurationUnit] = useState<string | undefined>(
     undefined
   );
+  const [mainChoice, setMainChoice] = useState<string>("");
   const [choices, setChoices] = useState<string[]>([]);
 
   const handleQuestionSelect = (question: string) => {
@@ -57,6 +58,12 @@ function Questions(props: QuestionsProps) {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setAdditionalInfo(e.target.value);
+  };
+
+  const handleMainChoiceChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setMainChoice(e.target.value);
   };
 
   const handleMaxDurationChange = (
@@ -181,8 +188,8 @@ function Questions(props: QuestionsProps) {
                   <UnorderedListOutlined />
                   <Input
                     placeholder="Choice"
-                    value={answer}
-                    onChange={handleAnswerChange}
+                    value={mainChoice}
+                    onChange={handleMainChoiceChange}
                   />
                   <PlusOutlined onClick={handleAddChoice} />
                 </div>
