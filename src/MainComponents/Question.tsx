@@ -11,12 +11,8 @@ import CustomTitle from "./InfoTitle";
 import DeleteQuestionButton from "./DeleteQuestionButton";
 import SaveButton from "./SaveButton";
 import CheckboxTitle from "./Checkbox";
-
 const { Option } = Select;
-
-const { TextArea } = Input;
-
-const questionOptions: string[] = [
+const questionOptions = [
   "Paragraph",
   "ShortAnswer",
   "Yes/No",
@@ -27,79 +23,64 @@ const questionOptions: string[] = [
   "FileUpload",
   "Video",
 ];
-
 interface Question {
   id: string;
-  // Define other properties of a question
 }
-
 interface QuestionsProps {
   question: Question;
   onDelete: (question: Question) => void;
 }
-
 function Questions(props: QuestionsProps) {
-  const [selectedQuestion, setSelectedQuestion] = useState<string>("");
-  const [answer, setAnswer] = useState<string>("");
-  const [additionalInfo, setAdditionalInfo] = useState<string>("");
-  const [maxDuration, setMaxDuration] = useState<string>("");
+  const [selectedQuestion, setSelectedQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [additionalInfo, setAdditionalInfo] = useState("");
+  const [maxDuration, setMaxDuration] = useState("");
   const [durationUnit, setDurationUnit] = useState<string | undefined>(
     undefined
   );
-  const [mainChoice, setMainChoice] = useState<string>("");
+  const [mainChoice, setMainChoice] = useState("");
   const [choices, setChoices] = useState<string[]>([]);
-
   const handleQuestionSelect = (question: string) => {
     setSelectedQuestion(question);
   };
-
   const handleAnswerChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setAnswer(e.target.value);
   };
-
   const handleAdditionalInfoChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setAdditionalInfo(e.target.value);
   };
-
   const handleMainChoiceChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setMainChoice(e.target.value);
   };
-
   const handleMaxDurationChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setMaxDuration(e.target.value);
   };
-
   const handleDurationUnitChange = (value: string) => {
     setDurationUnit(value);
   };
-
   const handleDeleteQuestion = () => {
     props.onDelete(props.question);
   };
-
   const handleAddChoice = () => {
     setChoices([...choices, ""]);
   };
-
   const handleChoiceChange = (index: number, value: string) => {
     const updatedChoices = [...choices];
     updatedChoices[index] = value;
     setChoices(updatedChoices);
   };
-
   const handleSave = () => {
     // Logic to save the question and answer
     // You can use the 'selectedQuestion', 'answer', 'additionalInfo', 'maxDuration', and 'durationUnit' state variables here
   };
-
   const questionMenu = (
     <Menu>
       {questionOptions.map((question) => (
@@ -112,7 +93,95 @@ function Questions(props: QuestionsProps) {
       ))}
     </Menu>
   );
-
+  const renderQuestionInput = () => {
+    if (
+      selectedQuestion === "Paragraph" ||
+      selectedQuestion === "ShortAnswer" ||
+      selectedQuestion === "FileUpload" ||
+      selectedQuestion === "Date" ||
+      selectedQuestion === "Number"
+    ) {
+      return (
+        <Input
+          placeholder="Question"
+          value={answer}
+          onChange={handleAnswerChange}
+        />
+      );
+    } else if (selectedQuestion === "Yes/No") {
+      return (
+        <div className="flex flex-col gap-3">
+          <Input
+            placeholder="Question"
+            value={answer}
+            onChange={handleAnswerChange}
+          />
+          <CheckboxTitle title="Disqualify candidate if the answer is no" />
+        </div>
+      );
+    } else if (selectedQuestion === "Video") {
+      return (
+        <div className="flex flex-col gap-3">
+          <Input
+            placeholder="Question"
+            value={answer}
+            onChange={handleAnswerChange}
+          />
+          <Input
+            placeholder="Additional information"
+            value={additionalInfo}
+            onChange={handleAdditionalInfoChange}
+          />
+          <div className="flex gap-1">
+            <Input
+              type="number"
+              placeholder="Max duration of video"
+              value={maxDuration}
+              onChange={handleMaxDurationChange}
+            />
+            <Select
+              placeholder="in (sec/min)"
+              value={durationUnit}
+              onChange={handleDurationUnitChange}
+            >
+              <Option value="Minutes">Minutes</Option>
+              <Option value="Seconds">Seconds</Option>
+            </Select>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="flex flex-col gap-4">
+          <Input
+            placeholder="Question"
+            value={answer}
+            onChange={handleAnswerChange}
+          />
+          {choices.map((choice, index) => (
+            <div className="flex gap-4" key={index}>
+              <UnorderedListOutlined />
+              <Input
+                placeholder="Choice"
+                value={choice}
+                onChange={(e) => handleChoiceChange(index, e.target.value)}
+              />
+            </div>
+          ))}
+          <div className="flex gap-4">
+            <UnorderedListOutlined />
+            <Input
+              placeholder="Choice"
+              value={mainChoice}
+              onChange={handleMainChoiceChange}
+            />
+            <PlusOutlined onClick={handleAddChoice} />
+          </div>
+          <CheckboxTitle title="Enable “Other” option" />
+        </div>
+      );
+    }
+  };
   return (
     <div>
       <div className="flex flex-col gap-3">
@@ -124,85 +193,7 @@ function Questions(props: QuestionsProps) {
         {selectedQuestion && (
           <div>
             <CustomTitle title={selectedQuestion} />
-            {selectedQuestion === "Paragraph" ||
-            selectedQuestion === "ShortAnswer" ||
-            selectedQuestion === "FileUpload" ||
-            selectedQuestion === "Date" ||
-            selectedQuestion === "Number" ? (
-              <Input
-                placeholder="Question"
-                value={answer}
-                onChange={handleAnswerChange}
-              />
-            ) : selectedQuestion === "Yes/No" ? (
-              <div className="flex flex-col gap-3">
-                <Input
-                  placeholder="Question"
-                  value={answer}
-                  onChange={handleAnswerChange}
-                />
-                <CheckboxTitle title="Disqualify candidate if the answer is no" />
-              </div>
-            ) : selectedQuestion === "Video" ? (
-              <div className="flex flex-col gap-3">
-                <Input
-                  placeholder="Question"
-                  value={answer}
-                  onChange={handleAnswerChange}
-                />
-                <Input
-                  placeholder="Additional information"
-                  value={additionalInfo}
-                  onChange={handleAdditionalInfoChange}
-                />
-                <div className="flex gap-1">
-                  <Input
-                    type="number"
-                    placeholder="Max duration of video"
-                    value={maxDuration}
-                    onChange={handleMaxDurationChange}
-                  />
-                  <Select
-                    placeholder="in (sec/min)"
-                    value={durationUnit}
-                    onChange={handleDurationUnitChange}
-                  >
-                    <Option value="Minutes">Minutes</Option>
-                    <Option value="Seconds">Seconds</Option>
-                  </Select>
-                </div>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-4">
-                <Input
-                  placeholder="Question"
-                  value={answer}
-                  onChange={handleAnswerChange}
-                />
-                {choices.map((choice, index) => (
-                  <div className="flex gap-4" key={index}>
-                    <UnorderedListOutlined />
-                    <Input
-                      placeholder="Choice"
-                      value={choice}
-                      onChange={(e) =>
-                        handleChoiceChange(index, e.target.value)
-                      }
-                    />
-                  </div>
-                ))}
-                <div className="flex gap-4">
-                  <UnorderedListOutlined />
-                  <Input
-                    placeholder="Choice"
-                    value={mainChoice}
-                    onChange={handleMainChoiceChange}
-                  />
-                  <PlusOutlined onClick={handleAddChoice} />
-                </div>
-                <CheckboxTitle title="Enable “Other” option" />
-              </div>
-            )}
+            {renderQuestionInput()}
           </div>
         )}
         <div className="flex flex-row justify-between">
@@ -217,5 +208,4 @@ function Questions(props: QuestionsProps) {
     </div>
   );
 }
-
 export default Questions;
