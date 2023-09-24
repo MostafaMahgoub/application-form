@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AddQuestionButton from "../MainComponents/AddQuestionButton";
 import FormComponent from "../MainComponents/Form-Component";
 import Questions from "../MainComponents/Question";

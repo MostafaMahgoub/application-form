@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Divider, Select } from "antd";
-import { EditOutlined, DownOutlined , UnorderedListOutlined , PlusOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DownOutlined,
+  UnorderedListOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 import { Dropdown, Menu, Input } from "antd";
 import CustomTitle from "./InfoTitle";
 import DeleteQuestionButton from "./DeleteQuestionButton";
@@ -168,7 +173,7 @@ function Questions(props: QuestionsProps) {
                 </div>
               </div>
             ) : (
-                <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4">
                 <Input
                   placeholder="Question"
                   value={answer}
@@ -180,7 +185,9 @@ function Questions(props: QuestionsProps) {
                     <Input
                       placeholder="Choice"
                       value={choice}
-                      onChange={(e) => handleChoiceChange(index, e.target.value)}
+                      onChange={(e) =>
+                        handleChoiceChange(index, e.target.value)
+                      }
                     />
                   </div>
                 ))}
