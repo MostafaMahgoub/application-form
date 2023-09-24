@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Divider, Select } from "antd";
+import { Divider, Select , Typography } from "antd";
 import {
   EditOutlined,
   DownOutlined,
@@ -12,6 +12,7 @@ import DeleteQuestionButton from "./DeleteQuestionButton";
 import SaveButton from "./SaveButton";
 import CheckboxTitle from "./Checkbox";
 const { Option } = Select;
+const { Text } = Typography;
 const questionOptions = [
   "Paragraph",
   "ShortAnswer",
@@ -31,6 +32,7 @@ interface QuestionsProps {
   onDelete: (question: Question) => void;
 }
 function Questions(props: QuestionsProps) {
+  const [saved , setSaved] = useState<boolean>(false);
   const [selectedQuestion, setSelectedQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
@@ -42,6 +44,9 @@ function Questions(props: QuestionsProps) {
   const [choices, setChoices] = useState<string[]>([]);
   const handleQuestionSelect = (question: string) => {
     setSelectedQuestion(question);
+  };
+  const handleEditClick = () => {
+         setSaved(false);
   };
   const handleAnswerChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -78,8 +83,7 @@ function Questions(props: QuestionsProps) {
     setChoices(updatedChoices);
   };
   const handleSave = () => {
-    // Logic to save the question and answer
-    // You can use the 'selectedQuestion', 'answer', 'additionalInfo', 'maxDuration', and 'durationUnit' state variables here
+    setSaved(true);
   };
   const questionMenu = (
     <Menu>
@@ -184,7 +188,21 @@ function Questions(props: QuestionsProps) {
   };
   return (
     <div>
-      <div className="flex flex-col gap-3">
+        {saved && (
+            <div className="flex flex-row items-center">
+                <div>
+                <Text type="secondary">{selectedQuestion}</Text>
+                <CustomTitle title={answer} />
+                </div>
+                <div className="flex-grow"></div>
+                <div>
+                <EditOutlined  onClick={handleEditClick} />
+                </div>
+            </div>
+        )
+
+        }
+       {!saved && (<div className="flex flex-col gap-3">
         <Dropdown overlay={questionMenu} trigger={["click"]}>
           <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
             Select Question <DownOutlined />
@@ -203,7 +221,7 @@ function Questions(props: QuestionsProps) {
           />
           <SaveButton onClick={handleSave} />
         </div>
-      </div>
+      </div>)}
       <Divider />
     </div>
   );
