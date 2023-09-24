@@ -1,39 +1,57 @@
-import AddQuestionButton from '../MainComponents/AddQuestionButton';
-import CheckboxTitle from '../MainComponents/Checkbox';
-import DeleteQuestionButton from '../MainComponents/DeleteQuestionButton';
-import FormComponent from '../MainComponents/Form-Component';
-import SaveButton from '../MainComponents/SaveButton';
-import SwitchTitle from '../MainComponents/Switch';
-import CustomTitle from '../MainComponents/InfoTitle';
-import { Divider } from 'antd';
-
+import AddQuestionButton from "../MainComponents/AddQuestionButton";
+import CheckboxTitle from "../MainComponents/Checkbox";
+import DeleteQuestionButton from "../MainComponents/DeleteQuestionButton";
+import FormComponent from "../MainComponents/Form-Component";
+import SaveButton from "../MainComponents/SaveButton";
+import SwitchTitle from "../MainComponents/Switch";
+import CustomTitle from "../MainComponents/InfoTitle";
+import { Divider } from "antd";
 function PersonalInfoSection() {
   const handleDeleteQuestion = () => {
     // Temporary onClick event handler that does nothing
   };
-
+  const renderField = (title: string, internal: boolean) => {
+    return (
+      <div className="flex items-center gap-8">
+        <CustomTitle title={title} />
+        <div className="flex-grow"></div>
+        <CheckboxTitle title="internal" />
+        <SwitchTitle />
+      </div>
+    );
+  };
   return (
     <div>
       <FormComponent
         title="Personal Information"
         content={
           <>
-            <CustomTitle title={'First Name'} />
+            <CustomTitle title={"First Name"} />
             <Divider />
-            <SwitchTitle />
+            <CustomTitle title={"Last Name"} />
             <Divider />
-            <CheckboxTitle title="Internal" />
+            {renderField("Email", false)}
             <Divider />
-            <DeleteQuestionButton onClick={handleDeleteQuestion} title={'Delete question'} />
+            {renderField("Phone", true)}
             <Divider />
-            <AddQuestionButton onClick={handleDeleteQuestion} title={'Add a question'} />
+            {renderField("Nationality", true)}
             <Divider />
-            <SaveButton onClick={handleDeleteQuestion} />
+            {renderField("Current Residence", true)}
+            <Divider />
+            {renderField("ID Number", true)}
+            <Divider />
+            {renderField("Date of Birth", true)}
+            <Divider />
+            {renderField("Gender", true)}
+            <Divider className="invisible" />
+            <AddQuestionButton
+              onClick={handleDeleteQuestion}
+              title={"Add a question"}
+            />
           </>
         }
       />
     </div>
   );
 }
-
 export default PersonalInfoSection;

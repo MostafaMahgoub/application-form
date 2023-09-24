@@ -13,7 +13,7 @@ function FormComponent({ title, content }: FormComponentProps) {
         title={<div className="text-black text-2xl font-poppins font-semibold leading-7 break-words">{title}</div>}
         bordered={false}
         style={{
-          width: "400px",
+          width: "440px",
           maxWidth: "lg",
           boxShadow: '3px 3px 14px rgba(190, 190, 190, 0.3)',
         }}
