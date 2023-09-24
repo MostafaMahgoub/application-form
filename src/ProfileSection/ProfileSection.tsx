@@ -1,9 +1,9 @@
-import FormComponent from '../Form-Component';
+import FormComponent from '../MainComponents/Form-Component';
 
 function ProfileSection() {
   return (
-    <div className="App">
-      <FormComponent title={"Card"} content={<p>test</p>} />
+    <div>
+      <FormComponent title={"Profile"} content={<p>test</p>} />
     </div>
   );
 }

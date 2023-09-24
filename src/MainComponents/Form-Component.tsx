@@ -7,13 +7,15 @@ interface FormComponentProps {
 
 function FormComponent({ title, content }: FormComponentProps) {
   return (
-    <div>
+    <div className="flex justify-center">
       <Card
-        className=""
+        className="shadow-md"
         title={<div className="text-black text-2xl font-poppins font-semibold leading-7 break-words">{title}</div>}
         bordered={false}
         style={{
-          width: "30vw",
+          width: "400px",
+          maxWidth: "lg",
+          boxShadow: '3px 3px 14px rgba(190, 190, 190, 0.3)',
         }}
       >
         {content}

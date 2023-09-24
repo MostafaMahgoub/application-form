@@ -1,9 +1,9 @@
-import FormComponent from '../Form-Component';
+import FormComponent from '../MainComponents/Form-Component';
 
 function AdditionalQuestionSection() {
   return (
-    <div className="App">
-      <FormComponent title={"Card"} content={<p>test</p>} />
+    <div>
+      <FormComponent title={"Additional questions"} content={<p>test</p>} />
     </div>
   );
 }
