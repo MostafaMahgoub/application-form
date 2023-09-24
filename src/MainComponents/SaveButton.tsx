@@ -9,7 +9,7 @@ function SaveButton({ onClick }: AddQuestionButtonProps) {
     return (
       <Button
         type="primary"
-        className='font-poppins text-xs break-words text-white bg-green-700 font-semibold hover:!bg-green-800'
+        className='font-poppins text-xs break-words text-white bg-green-700 font-semibold w-fit hover:!bg-green-800'
         onClick={onClick}
       >
         Save

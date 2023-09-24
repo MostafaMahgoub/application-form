@@ -5,6 +5,7 @@ import { Dropdown, Menu, Input } from 'antd';
 import CustomTitle from './InfoTitle';
 import DeleteQuestionButton from './DeleteQuestionButton';
 import SaveButton from './SaveButton';
+import CheckboxTitle from './Checkbox';
 
 const { TextArea } = Input;
 
@@ -46,6 +47,11 @@ function Questions(props: QuestionsProps) {
     props.onDelete(props.question);
   };
 
+  const handleSave = () => {
+    // Logic to save the question and answer
+    // You can use the 'selectedQuestion' and 'answer' state variables here
+    };
+
   const questionMenu = (
     <Menu>
       {questionOptions.map((question) => (
@@ -67,14 +73,22 @@ function Questions(props: QuestionsProps) {
       {selectedQuestion && (
         <div>
           <CustomTitle title={selectedQuestion} />
-          {selectedQuestion === 'Paragraph' || selectedQuestion === 'ShortAnswer' ? (
-            <TextArea rows={4} value={answer} onChange={handleAnswerChange} />
-          ) : (
+          {selectedQuestion === 'Paragraph' || selectedQuestion === 'ShortAnswer' || selectedQuestion === 'FileUpload' || selectedQuestion === 'Date' || selectedQuestion === 'Number' ? (
             <Input value={answer} onChange={handleAnswerChange} />
+          ) :  selectedQuestion === 'Yes/No' ? (
+            <div className='flex flex-col gap-3'>
+            <Input value={answer} onChange={handleAnswerChange} />
+            <CheckboxTitle title='Disqualify candidate if the answer is no' />
+            </div>
+          ) : (
+            <TextArea rows={4} value={answer} onChange={handleAnswerChange} />
           )}
         </div>
       )}
+      <div className='flex flex-row justify-between'>
       <DeleteQuestionButton title="Delete question" onClick={handleDeleteQuestion} />
+      <SaveButton onClick={handleSave} />
+      </div>
       </div>
       <Divider />
     </div>
