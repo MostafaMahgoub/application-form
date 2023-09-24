@@ -6,15 +6,21 @@ import Questions from "../MainComponents/Question";
 import DeleteQuestionButton from "../MainComponents/DeleteQuestionButton";
 interface Question {
   id: string;
-  // Define other properties of a question
 }
 function AdditionalQuestionSection() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const generateUniqueId = (): string => {
-    // Implement your unique ID generation logic here
-    // For example, you can use a library like uuid or generate a random string
-    return "unique-id";
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let uniqueId = '';
+  
+    for (let i = 0; i < 10; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      uniqueId += characters[randomIndex];
+    }
+  
+    return uniqueId;
   };
+  
   const handleAddQuestion = () => {
     setQuestions([...questions, { id: generateUniqueId() }]);
   };
