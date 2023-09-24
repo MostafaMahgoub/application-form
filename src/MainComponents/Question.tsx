@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Divider, Select } from "antd";
-import { EditOutlined, DownOutlined } from "@ant-design/icons";
+import { EditOutlined, DownOutlined , UnorderedListOutlined , PlusOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Input } from "antd";
 import CustomTitle from "./InfoTitle";
 import DeleteQuestionButton from "./DeleteQuestionButton";
@@ -38,7 +38,10 @@ function Questions(props: QuestionsProps) {
   const [answer, setAnswer] = useState<string>("");
   const [additionalInfo, setAdditionalInfo] = useState<string>("");
   const [maxDuration, setMaxDuration] = useState<string>("");
-  const [durationUnit, setDurationUnit] = useState<string | undefined>(undefined);
+  const [durationUnit, setDurationUnit] = useState<string | undefined>(
+    undefined
+  );
+  const [choices, setChoices] = useState<string[]>([]);
 
   const handleQuestionSelect = (question: string) => {
     setSelectedQuestion(question);
@@ -68,6 +71,16 @@ function Questions(props: QuestionsProps) {
 
   const handleDeleteQuestion = () => {
     props.onDelete(props.question);
+  };
+
+  const handleAddChoice = () => {
+    setChoices([...choices, ""]);
+  };
+
+  const handleChoiceChange = (index: number, value: string) => {
+    const updatedChoices = [...choices];
+    updatedChoices[index] = value;
+    setChoices(updatedChoices);
   };
 
   const handleSave = () => {
@@ -148,7 +161,33 @@ function Questions(props: QuestionsProps) {
                 </div>
               </div>
             ) : (
-              <TextArea rows={4} value={answer} onChange={handleAnswerChange} />
+                <div className="flex flex-col gap-4">
+                <Input
+                  placeholder="Question"
+                  value={answer}
+                  onChange={handleAnswerChange}
+                />
+                {choices.map((choice, index) => (
+                  <div className="flex gap-4" key={index}>
+                    <UnorderedListOutlined />
+                    <Input
+                      placeholder="Choice"
+                      value={choice}
+                      onChange={(e) => handleChoiceChange(index, e.target.value)}
+                    />
+                  </div>
+                ))}
+                <div className="flex gap-4">
+                  <UnorderedListOutlined />
+                  <Input
+                    placeholder="Choice"
+                    value={answer}
+                    onChange={handleAnswerChange}
+                  />
+                  <PlusOutlined onClick={handleAddChoice} />
+                </div>
+                <CheckboxTitle title="Enable “Other” option" />
+              </div>
             )}
           </div>
         )}
