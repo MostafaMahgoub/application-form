@@ -50,7 +50,7 @@ function PersonalInfoSection() {
             <Divider />
             <CustomTitle title={"Last Name"} />
             <Divider />
-            {renderField("Email")}
+            <CustomTitle title={"Email"} />
             <Divider />
             {renderField("Phone")}
             <Divider />
