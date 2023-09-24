@@ -1,6 +1,6 @@
-import FormComponent from './Form-Component';
+import FormComponent from '../Form-Component';
 
-function AppForm() {
+function PersonalInfoSection() {
   return (
     <div className="App">
       <FormComponent title={"Card"} content={<p>test</p>} />
@@ -8,4 +8,4 @@ function AppForm() {
   );
 }
 
-export default AppForm;
+export default PersonalInfoSection;
