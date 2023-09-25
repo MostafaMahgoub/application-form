@@ -38,7 +38,7 @@ function ProfileSection() {
       <div className="flex items-center gap-8">
         <CustomTitle title={title} />
         <div className="flex-grow"></div>
-        <CheckboxTitle title="Mandatory" />
+        <CheckboxTitle Infotitle={infoTitle} Section="profile" title="Mandatory" />
         <SwitchTitle Infotitle={infoTitle} Section="profile" />
       </div>
     );

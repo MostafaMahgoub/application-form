@@ -36,7 +36,7 @@ function PersonalInfoSection() {
       <div className="flex items-center gap-8">
         <CustomTitle title={title} />
         <div className="flex-grow"></div>
-        <CheckboxTitle title="internal" />
+        <CheckboxTitle Infotitle={infoTitle} Section="personalInformation" title="internal" />
         <SwitchTitle Infotitle={infoTitle} Section="personalInformation" />
       </div>
     );
