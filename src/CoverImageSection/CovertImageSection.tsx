@@ -16,7 +16,9 @@ function CoverImageSection() {
     beforeUpload: (file: File) => {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setPreviewImage(e.target?.result as string);
+        const base64Url = e.target?.result as string;
+        console.log(base64Url); // Log the base64 URL
+        setPreviewImage(base64Url);
       };
       reader.readAsDataURL(file);
       return false; // Prevent default upload behavior
@@ -49,7 +51,7 @@ function CoverImageSection() {
           <>
             {previewImage ? (
               <>
-                <img src={previewImage} alt="Preview" style={{ maxWidth: '100%' , marginBottom: '8px' }} />
+                <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', marginBottom: '8px' }} />
                 <DeleteQuestionButton title="Delete & re-upload" onClick={handlePhotoDeletion} />
               </>
             ) : (
