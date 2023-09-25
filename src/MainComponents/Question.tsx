@@ -108,6 +108,7 @@ function Questions(props: QuestionsProps) {
   const handleSave = () => {
     const JsonQuestion: {
       id: string;
+      QuestionID: string;
       type: string;
       question: string;
       additionalInfo?: string;
@@ -117,7 +118,8 @@ function Questions(props: QuestionsProps) {
       other?: boolean;
       choices?: string[];
     } = {
-      id: props.question.id,
+      id:"497f6eca-6276-4993-bfeb-53cbbbba6f08",
+      QuestionID : props.question.id,
       type: selectedQuestion,
       question: answer,
       ...(selectedQuestion === "Video" && {
