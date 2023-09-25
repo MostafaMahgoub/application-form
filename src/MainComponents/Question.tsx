@@ -181,7 +181,7 @@ function Questions(props: QuestionsProps) {
             value={answer}
             onChange={handleAnswerChange}
           />
-          <CheckboxTitle setDisqualify={setDisqualify} title="Disqualify candidate if the answer is no" />
+          <CheckboxTitle disqualify={disqualify} setDisqualify={setDisqualify} title="Disqualify candidate if the answer is no" />
         </div>
       );
     } else if (selectedQuestion === "Video") {
@@ -242,7 +242,7 @@ function Questions(props: QuestionsProps) {
             />
             <PlusOutlined onClick={handleAddChoice} />
           </div>
-          <CheckboxTitle setOther={setOther} title="Enable “Other” option" />
+          <CheckboxTitle other={other} setOther={setOther} title="Enable “Other” option" />
         </div>
       );
     }

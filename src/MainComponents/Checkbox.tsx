@@ -8,10 +8,12 @@ interface CheckBoxTitleProps {
   Infotitle?: string;
   Section?: string;
   setOther?: (value: boolean) => void; 
-  setDisqualify?: (value: boolean) => void; 
+  setDisqualify?: (value: boolean) => void;
+  other?: boolean;
+  disqualify?: boolean; 
 }
 
-function CheckboxTitle({ title, Infotitle, Section, setOther , setDisqualify }: CheckBoxTitleProps) {
+function CheckboxTitle({ title, Infotitle, Section, setOther , setDisqualify , other , disqualify }: CheckBoxTitleProps) {
   const [called, setCalled] = useState<boolean>(false);
 
   const onChange = (e: CheckboxChangeEvent) => {
@@ -27,16 +29,16 @@ function CheckboxTitle({ title, Infotitle, Section, setOther , setDisqualify }: 
       console.log(jsonData);
     }
     if (setOther) {
-      setOther(!called);
+      setOther(!other);
     }
     if (setDisqualify) {
-      setDisqualify(!called);
+      setDisqualify(!disqualify);
     }
   };
 
   return (
     <div className="flex items-center">
-      <Checkbox onChange={onChange} />
+      { (other === true || disqualify === true) ? <Checkbox checked onChange={onChange} /> : <Checkbox onChange={onChange} />}
       <span
         className="ml-2 text-black text-sm font-sans font-normal leading-6 break-words"
         style={{ fontFamily: "Poppins" }}
