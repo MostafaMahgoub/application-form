@@ -15,11 +15,15 @@ const handleSendClick = async () => {
 
   try {
     const response = await fetch(url, options);
-    const data = await response.json();
-    console.log(data);
+    if (response.status === 204) {
+      console.log('Request successful. No content returned.');
+    } else {
+      console.error('Request failed with status:', response.status);
+    }
   } catch (error) {
-    console.error(error);
+    console.error('An error occurred:', error);
   }
+  
 };
 
 function AppForm() {
