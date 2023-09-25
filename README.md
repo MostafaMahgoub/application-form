@@ -31,6 +31,8 @@ To get a local copy of the project up and running, follow these steps.
 `prism mock "Application Form.yaml"` <br>
 *This will start the mocked server so you can test the App with the api and how it handle the request etc..*
 
+**VERY IMPORTANT NOTE: ENSURE THAT THE RUNNING SERVER PORT MATCHES THE PORT TO WHICH THE FRONT-END SENDS ITS REQUESTS.**
+
 
 
 ## Endpoints
