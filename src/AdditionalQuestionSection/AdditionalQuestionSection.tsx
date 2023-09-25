@@ -36,6 +36,7 @@ function AdditionalQuestionSection() {
                 <Questions
                   question={question}
                   onDelete={handleDeleteQuestion}
+                  Section="customisedQuestions"
                 />
               </div>
             ))}

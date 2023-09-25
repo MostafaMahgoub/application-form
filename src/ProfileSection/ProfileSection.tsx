@@ -60,6 +60,7 @@ function ProfileSection() {
                 <Questions
                   question={question}
                   onDelete={handleDeleteQuestion}
+                  Section="profile"
                 />
               </div>
             ))}

@@ -5,7 +5,6 @@ import FormComponent from "../MainComponents/Form-Component";
 import SwitchTitle from "../MainComponents/Switch";
 import CustomTitle from "../MainComponents/InfoTitle";
 import Questions from "../MainComponents/Question";
-import { jsonData } from '../Application-Form-Json';
 import { Divider } from "antd";
 
 interface Question {
@@ -70,6 +69,7 @@ function PersonalInfoSection() {
                 <Questions
                   question={question}
                   onDelete={handleDeleteQuestion}
+                  Section= 'personalInformation'
                 />
               </div>
             ))}

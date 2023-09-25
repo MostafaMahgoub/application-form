@@ -7,6 +7,7 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 import { Dropdown, Menu, Input } from "antd";
+import { jsonData } from '../Application-Form-Json';
 import CustomTitle from "./InfoTitle";
 import DeleteQuestionButton from "./DeleteQuestionButton";
 import SaveButton from "./SaveButton";
@@ -30,6 +31,7 @@ interface Question {
 interface QuestionsProps {
   question: Question;
   onDelete: (question: Question) => void;
+  Section : string;
 }
 function Questions(props: QuestionsProps) {
   const [saved , setSaved] = useState<boolean>(false);
@@ -83,8 +85,65 @@ function Questions(props: QuestionsProps) {
     setChoices(updatedChoices);
   };
   const handleSave = () => {
+    const JsonQuestion: {
+      id: string;
+      type: string;
+      question: string;
+      additionalInfo?: string;
+      maxDuration?: string;
+      durationUnit?: string;
+      disqualify?: boolean;
+      other?: boolean;
+      choices?: string[];
+    } = {
+      id: props.question.id,
+      type: selectedQuestion,
+      question: answer,
+      ...(selectedQuestion === "Video" && {
+        additionalInfo: additionalInfo,
+        maxDuration: maxDuration,
+        durationUnit: durationUnit,
+      }),
+      ...(selectedQuestion === "Yes/No" && {
+        disqualify: false,
+      }),
+      ...((selectedQuestion === "Dropdown" || selectedQuestion === "MultipleChoice") && {
+        choices : [...choices, mainChoice] ,
+        other: false,
+      }),
+    };
+  
+    if (props.Section === 'personalInformation') {
+      let Questions: any[] = jsonData.data.attributes.personalInformation.personalQuestions;
+      const existingQuestionIndex = Questions.findIndex((question) => question.id === JsonQuestion.id);
+      if (existingQuestionIndex !== -1) {
+        Questions[existingQuestionIndex] = JsonQuestion;
+      } else {
+        Questions.push(JsonQuestion);
+      }
+    } else if (props.Section === 'profile') {
+      let Questions: any[] = jsonData.data.attributes.profile.profileQuestions;
+      const existingQuestionIndex = Questions.findIndex((question) => question.id === JsonQuestion.id);
+      if (existingQuestionIndex !== -1) {
+        Questions[existingQuestionIndex] = JsonQuestion;
+      } else {
+        Questions.push(JsonQuestion);
+      }
+    } else {
+      let Questions: any[] = jsonData.data.attributes.customisedQuestions;
+      const existingQuestionIndex = Questions.findIndex((question) => question.id === JsonQuestion.id);
+      if (existingQuestionIndex !== -1) {
+        Questions[existingQuestionIndex] = JsonQuestion;
+      } else {
+        Questions.push(JsonQuestion);
+      }
+    }
+  
+    console.log(jsonData);
     setSaved(true);
   };
+  
+  
   const questionMenu = (
     <Menu>
       {questionOptions.map((question) => (
