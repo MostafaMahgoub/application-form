@@ -76,6 +76,25 @@ function Questions(props: QuestionsProps) {
     setDurationUnit(value);
   };
   const handleDeleteQuestion = () => {
+    if (props.Section === 'personalInformation') {
+    let Questions : any[] = jsonData.data.attributes.personalInformation.personalQuestions;
+    const existingQuestionIndex = Questions.findIndex((question) => question.id === props.question.id);
+    if (existingQuestionIndex !== -1) {
+      Questions.splice(existingQuestionIndex, 1);
+    }
+  } else if (props.Section === 'profile') {
+    let Questions : any[] = jsonData.data.attributes.profile.profileQuestions;
+    const existingQuestionIndex = Questions.findIndex((question) => question.id === props.question.id);
+    if (existingQuestionIndex !== -1) {
+      Questions.splice(existingQuestionIndex, 1);
+    }
+  } else {
+    let Questions : any[] = jsonData.data.attributes.customisedQuestions;
+    const existingQuestionIndex = Questions.findIndex((question) => question.id === props.question.id);
+    if (existingQuestionIndex !== -1) {
+      Questions.splice(existingQuestionIndex, 1);
+    }
+  }
     props.onDelete(props.question);
   };
   const handleAddChoice = () => {
