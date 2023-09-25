@@ -6,7 +6,6 @@ This is a form application designed for recruiters or HR professionals. It allow
 ## Table of Contents
 - [Getting Started](#getting-started)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Endpoints](#endpoints)
 - [Testing](#testing)
 - [Contributing](#contributing)
