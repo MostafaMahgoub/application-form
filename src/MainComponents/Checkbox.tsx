@@ -22,11 +22,9 @@ function CheckboxTitle({ title, Infotitle, Section, setOther , setDisqualify , o
     if (Section === 'personalInformation') {
       let infoTitleJson: { internalUse: boolean } = SectionJson[Infotitle as keyof typeof SectionJson];
       infoTitleJson.internalUse = !called;
-      console.log(jsonData);
     } else if (Section === 'profile') {
       let infoTitleJson: { mandatory: boolean } = SectionJson[Infotitle as keyof typeof SectionJson];
       infoTitleJson.mandatory = !called;
-      console.log(jsonData);
     }
     if (setOther) {
       setOther(!other);

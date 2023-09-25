@@ -3,9 +3,10 @@ import CoverImageSection from './CoverImageSection/CovertImageSection';
 import PersonalInfoSection from './PersonalInfoSection/PersonalInformationSection';
 import ProfileSection from './ProfileSection/ProfileSection';
 import { jsonData } from './Application-Form-Json';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 
 const handleSendClick = async () => {
+  console.log(JSON.stringify(jsonData));
   const url = 'http://127.0.0.1:4010/api/1/programs/programId/application-form';
   const options = {
     method: 'PUT',
@@ -16,14 +17,13 @@ const handleSendClick = async () => {
   try {
     const response = await fetch(url, options);
     if (response.status === 204) {
-      console.log('Request successful. No content returned.');
+      message.success('Request successful. No content returned.');
     } else {
-      console.error('Request failed with status:', response.status);
+      message.error(`Request failed with status: ${response.status}`);
     }
   } catch (error) {
     console.error('An error occurred:', error);
   }
-  
 };
 
 function AppForm() {

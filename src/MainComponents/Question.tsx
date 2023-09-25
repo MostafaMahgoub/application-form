@@ -95,7 +95,6 @@ function Questions(props: QuestionsProps) {
       Questions.splice(existingQuestionIndex, 1);
     }
   }
-    console.log(jsonData);
     props.onDelete(props.question);
   };
   const handleAddChoice = () => {
@@ -163,7 +162,6 @@ function Questions(props: QuestionsProps) {
       }
     }
   
-    console.log(jsonData);
     setSaved(true);
   };
   
