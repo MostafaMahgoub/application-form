@@ -3,6 +3,7 @@ import { message, Upload } from 'antd';
 import FormComponent from '../MainComponents/Form-Component';
 import { UploadOutlined } from '@ant-design/icons';
 import DeleteQuestionButton from '../MainComponents/DeleteQuestionButton';
+import { jsonData } from '../Application-Form-Json';
 
 const { Dragger } = Upload;
 
@@ -17,7 +18,7 @@ function CoverImageSection() {
       const reader = new FileReader();
       reader.onload = (e) => {
         const base64Url = e.target?.result as string;
-        console.log(base64Url); // Log the base64 URL
+        jsonData.data.attributes.coverImage = base64Url;
         setPreviewImage(base64Url);
       };
       reader.readAsDataURL(file);
