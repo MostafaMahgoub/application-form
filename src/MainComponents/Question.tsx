@@ -78,23 +78,24 @@ function Questions(props: QuestionsProps) {
   const handleDeleteQuestion = () => {
     if (props.Section === 'personalInformation') {
     let Questions : any[] = jsonData.data.attributes.personalInformation.personalQuestions;
-    const existingQuestionIndex = Questions.findIndex((question) => question.id === props.question.id);
+    const existingQuestionIndex = Questions.findIndex((question) => question.QuestionID === props.question.id);
     if (existingQuestionIndex !== -1) {
       Questions.splice(existingQuestionIndex, 1);
     }
   } else if (props.Section === 'profile') {
     let Questions : any[] = jsonData.data.attributes.profile.profileQuestions;
-    const existingQuestionIndex = Questions.findIndex((question) => question.id === props.question.id);
+    const existingQuestionIndex = Questions.findIndex((question) => question.QuestionID === props.question.id);
     if (existingQuestionIndex !== -1) {
       Questions.splice(existingQuestionIndex, 1);
     }
   } else {
     let Questions : any[] = jsonData.data.attributes.customisedQuestions;
-    const existingQuestionIndex = Questions.findIndex((question) => question.id === props.question.id);
+    const existingQuestionIndex = Questions.findIndex((question) => question.QuestionID === props.question.id);
     if (existingQuestionIndex !== -1) {
       Questions.splice(existingQuestionIndex, 1);
     }
   }
+    console.log(jsonData);
     props.onDelete(props.question);
   };
   const handleAddChoice = () => {
@@ -138,7 +139,7 @@ function Questions(props: QuestionsProps) {
   
     if (props.Section === 'personalInformation') {
       let Questions: any[] = jsonData.data.attributes.personalInformation.personalQuestions;
-      const existingQuestionIndex = Questions.findIndex((question) => question.id === JsonQuestion.id);
+      const existingQuestionIndex = Questions.findIndex((question) => question.QuestionID === JsonQuestion.QuestionID);
       if (existingQuestionIndex !== -1) {
         Questions[existingQuestionIndex] = JsonQuestion;
       } else {
@@ -146,7 +147,7 @@ function Questions(props: QuestionsProps) {
       }
     } else if (props.Section === 'profile') {
       let Questions: any[] = jsonData.data.attributes.profile.profileQuestions;
-      const existingQuestionIndex = Questions.findIndex((question) => question.id === JsonQuestion.id);
+      const existingQuestionIndex = Questions.findIndex((question) => question.QuestionID === JsonQuestion.QuestionID);
       if (existingQuestionIndex !== -1) {
         Questions[existingQuestionIndex] = JsonQuestion;
       } else {
@@ -154,7 +155,7 @@ function Questions(props: QuestionsProps) {
       }
     } else {
       let Questions: any[] = jsonData.data.attributes.customisedQuestions;
-      const existingQuestionIndex = Questions.findIndex((question) => question.id === JsonQuestion.id);
+      const existingQuestionIndex = Questions.findIndex((question) => question.QuestionID === JsonQuestion.QuestionID);
       if (existingQuestionIndex !== -1) {
         Questions[existingQuestionIndex] = JsonQuestion;
       } else {
