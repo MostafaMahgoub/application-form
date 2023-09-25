@@ -15,31 +15,31 @@ export let jsonData = {
                 },
                 "emailId": {
                     "internalUse": false,
-                    "show": true
+                    "show": false
                 },
                 "phoneNumber": {
                     "internalUse": false,
-                    "show": true
+                    "show": false
                 },
                 "nationality": {
                     "internalUse": false,
-                    "show": true
+                    "show": false
                 },
                 "currentResidence": {
                     "internalUse": false,
-                    "show": true
+                    "show": false
                 },
                 "idNumber": {
                     "internalUse": false,
-                    "show": true
+                    "show": false
                 },
                 "dateOfBirth": {
                     "internalUse": false,
-                    "show": true
+                    "show": false
                 },
                 "gender": {
                     "internalUse": false,
-                    "show": true
+                    "show": false
                 },
                 "personalQuestions": [
                     
@@ -47,16 +47,16 @@ export let jsonData = {
             },
             "profile": {
                 "education": {
-                    "mandatory": true,
-                    "show": true
+                    "mandatory": false,
+                    "show": false
                 },
                 "experience": {
-                    "mandatory": true,
-                    "show": true
+                    "mandatory": false,
+                    "show": false
                 },
                 "resume": {
-                    "mandatory": true,
-                    "show": true
+                    "mandatory": false,
+                    "show": false
                 },
                 "profileQuestions": [
                     
