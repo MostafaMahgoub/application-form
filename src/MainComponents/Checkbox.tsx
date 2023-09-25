@@ -5,27 +5,33 @@ import { jsonData } from '../Application-Form-Json';
 
 interface CheckBoxTitleProps {
   title: string;
-  Infotitle : string;
-  Section: string;
+  Infotitle?: string;
+  Section?: string;
+  setOther?: (value: boolean) => void; 
+  setDisqualify?: (value: boolean) => void; 
 }
 
-function CheckboxTitle({title,Infotitle , Section }: CheckBoxTitleProps) {
+function CheckboxTitle({ title, Infotitle, Section, setOther , setDisqualify }: CheckBoxTitleProps) {
   const [called, setCalled] = useState<boolean>(false);
 
   const onChange = (e: CheckboxChangeEvent) => {
     setCalled(e.target.checked);
     let SectionJson = jsonData.data.attributes[Section as keyof typeof jsonData.data.attributes];
-    if (Section === 'personalInformation')
-    {
-    let infoTitleJson : { internalUse: boolean } = SectionJson[Infotitle as keyof typeof SectionJson];
-    infoTitleJson.internalUse = !called;
+    if (Section === 'personalInformation') {
+      let infoTitleJson: { internalUse: boolean } = SectionJson[Infotitle as keyof typeof SectionJson];
+      infoTitleJson.internalUse = !called;
+      console.log(jsonData);
+    } else if (Section === 'profile') {
+      let infoTitleJson: { mandatory: boolean } = SectionJson[Infotitle as keyof typeof SectionJson];
+      infoTitleJson.mandatory = !called;
+      console.log(jsonData);
     }
-    else if (Section === 'profile')
-    {
-    let infoTitleJson : { mandatory: boolean } = SectionJson[Infotitle as keyof typeof SectionJson];
-    infoTitleJson.mandatory = !called;
+    if (setOther) {
+      setOther(!called);
     }
-    console.log(jsonData);
+    if (setDisqualify) {
+      setDisqualify(!called);
+    }
   };
 
   return (

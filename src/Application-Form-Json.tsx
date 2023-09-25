@@ -63,9 +63,7 @@ export let jsonData = {
                 ]
             },
             "customisedQuestions": [
-                {
-                    
-                }
+                
             ]
         }
     }

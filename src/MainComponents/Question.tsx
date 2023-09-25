@@ -35,6 +35,8 @@ interface QuestionsProps {
 }
 function Questions(props: QuestionsProps) {
   const [saved , setSaved] = useState<boolean>(false);
+  const [disqualify , setDisqualify] = useState<boolean>(false);
+  const [other , setOther] = useState<boolean>(false);
   const [selectedQuestion, setSelectedQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
@@ -105,11 +107,11 @@ function Questions(props: QuestionsProps) {
         durationUnit: durationUnit,
       }),
       ...(selectedQuestion === "Yes/No" && {
-        disqualify: false,
+        disqualify: disqualify,
       }),
       ...((selectedQuestion === "Dropdown" || selectedQuestion === "MultipleChoice") && {
         choices : [...choices, mainChoice] ,
-        other: false,
+        other: other,
       }),
     };
   
@@ -179,7 +181,7 @@ function Questions(props: QuestionsProps) {
             value={answer}
             onChange={handleAnswerChange}
           />
-          <CheckboxTitle Infotitle='disqualify' Section="Question" title="Disqualify candidate if the answer is no" />
+          <CheckboxTitle setDisqualify={setDisqualify} title="Disqualify candidate if the answer is no" />
         </div>
       );
     } else if (selectedQuestion === "Video") {
@@ -240,7 +242,7 @@ function Questions(props: QuestionsProps) {
             />
             <PlusOutlined onClick={handleAddChoice} />
           </div>
-          <CheckboxTitle Infotitle='other' Section="Question" title="Enable “Other” option" />
+          <CheckboxTitle setOther={setOther} title="Enable “Other” option" />
         </div>
       );
     }
