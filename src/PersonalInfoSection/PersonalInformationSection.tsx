@@ -5,6 +5,7 @@ import FormComponent from "../MainComponents/Form-Component";
 import SwitchTitle from "../MainComponents/Switch";
 import CustomTitle from "../MainComponents/InfoTitle";
 import Questions from "../MainComponents/Question";
+import { jsonData } from '../Application-Form-Json';
 import { Divider } from "antd";
 
 interface Question {
@@ -30,13 +31,13 @@ function PersonalInfoSection() {
   const handleDeleteQuestion = (question: Question) => {
     setQuestions(questions.filter((q) => q.id !== question.id));
   };
-  const renderField = (title: string) => {
+  const renderField = (title: string , infoTitle: string) => {
     return (
       <div className="flex items-center gap-8">
         <CustomTitle title={title} />
         <div className="flex-grow"></div>
         <CheckboxTitle title="internal" />
-        <SwitchTitle />
+        <SwitchTitle Infotitle={infoTitle} Section="personalInformation" />
       </div>
     );
   };
@@ -52,17 +53,17 @@ function PersonalInfoSection() {
             <Divider />
             <CustomTitle title={"Email"} />
             <Divider />
-            {renderField("Phone")}
+            {renderField("Phone" , "phoneNumber")}
             <Divider />
-            {renderField("Nationality")}
+            {renderField("Nationality" , "nationality")}
             <Divider />
-            {renderField("Current Residence")}
+            {renderField("Current Residence" , "currentResidence")}
             <Divider />
-            {renderField("ID Number")}
+            {renderField("ID Number" , "idNumber")}
             <Divider />
-            {renderField("Date of Birth")}
+            {renderField("Date of Birth" , "dateOfBirth")}
             <Divider />
-            {renderField("Gender")}
+            {renderField("Gender" , "gender")}
             <Divider />
             {questions.map((question) => (
               <div key={question.id}>

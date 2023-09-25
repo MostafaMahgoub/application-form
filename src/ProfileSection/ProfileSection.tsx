@@ -33,13 +33,13 @@ function ProfileSection() {
     setQuestions(questions.filter((q) => q.id !== question.id));
   };
   
-  const renderField = (title: string) => {
+  const renderField = (title: string , infoTitle : string) => {
     return (
       <div className="flex items-center gap-8">
         <CustomTitle title={title} />
         <div className="flex-grow"></div>
         <CheckboxTitle title="Mandatory" />
-        <SwitchTitle />
+        <SwitchTitle Infotitle={infoTitle} Section="profile" />
       </div>
     );
   };
@@ -49,11 +49,11 @@ function ProfileSection() {
         title="Profile"
         content={
           <>
-            {renderField("Education")}
+            {renderField("Education" , "education")}
             <Divider />
-            {renderField("Experience")}
+            {renderField("Experience" , "experience")}
             <Divider />
-            {renderField("Resume")}
+            {renderField("Resume" , "resume")}
             <Divider />
             {questions.map((question) => (
               <div key={question.id}>
